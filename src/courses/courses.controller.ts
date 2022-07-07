@@ -6,11 +6,9 @@ import {
   Post,
   Delete,
   Query,
-  Patch,
 } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './create-course.dto';
-import { UpdateCourseDto } from './update-course.dto';
 
 @Controller('courses')
 export class CoursesController {
@@ -31,15 +29,6 @@ export class CoursesController {
   @Get(':courseId')
   async getCourse(@Param('courseId') courseId) {
     const course = await this.coursesService.getCourse(courseId);
-    return course;
-  }
-
-  @Patch(':courseId')
-  async update(
-    @Param('courseId') id: string,
-    @Body() updateUserDto: UpdateCourseDto,
-  ) {
-    const course = await this.coursesService.updateCourse(updateUserDto);
     return course;
   }
 

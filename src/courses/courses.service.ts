@@ -30,21 +30,6 @@ export class CoursesService {
     });
   }
 
-  updateCourse(courseId): Promise<any> {
-    const id = Number(courseId);
-    const course = this.courses.find((course) => course.id === id);
-
-    if (!course) {
-      throw new HttpException('This course does not exist!', 404);
-    }
-
-    console.log(course);
-
-    return new Promise((resolve) => {
-      resolve(course);
-    });
-  }
-
   deleteCourse(courseId): Promise<any> {
     const id = Number(courseId);
     const index = this.courses.findIndex((course) => course.id === id);
