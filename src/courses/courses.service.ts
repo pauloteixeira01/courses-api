@@ -22,4 +22,11 @@ export class CoursesService {
       resolve(course);
     });
   }
+
+  setCourse(course): Promise<any> {
+    return new Promise((resolve) => {
+      this.courses.push(course);
+      resolve(this.courses);
+    });
+  }
 }
