@@ -23,9 +23,23 @@ export class CoursesService {
     });
   }
 
-  setCourse(course): Promise<any> {
+  addCourse(course): Promise<any> {
     return new Promise((resolve) => {
       this.courses.push(course);
+      resolve(this.courses);
+    });
+  }
+
+  deleteCourse(courseId): Promise<any> {
+    const id = Number(courseId);
+    const index = this.courses.findIndex((course) => course.id === id);
+
+    if (index === -1) {
+      throw new HttpException('This course does not exist!', 404);
+    }
+
+    return new Promise((resolve) => {
+      this.courses.splice(index, 1);
       resolve(this.courses);
     });
   }
