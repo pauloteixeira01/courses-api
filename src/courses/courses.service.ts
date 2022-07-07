@@ -4,6 +4,13 @@ import { COURSES } from './courses.mock';
 export class CoursesService {
   courses = COURSES;
 
+  addCourse(course): Promise<any> {
+    return new Promise((resolve) => {
+      this.courses.push(course);
+      resolve(this.courses);
+    });
+  }
+
   getCourses(): Promise<any> {
     return new Promise((resolve) => {
       resolve(this.courses);
@@ -23,10 +30,18 @@ export class CoursesService {
     });
   }
 
-  addCourse(course): Promise<any> {
+  updateCourse(courseId): Promise<any> {
+    const id = Number(courseId);
+    const course = this.courses.find((course) => course.id === id);
+
+    if (!course) {
+      throw new HttpException('This course does not exist!', 404);
+    }
+
+    console.log(course);
+
     return new Promise((resolve) => {
-      this.courses.push(course);
-      resolve(this.courses);
+      resolve(course);
     });
   }
 
